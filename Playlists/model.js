@@ -12,4 +12,5 @@ const Playlist = sequelize.define('playlists', {
   tableName: 'playlists'
 })
 
+
 module.exports = Playlist
