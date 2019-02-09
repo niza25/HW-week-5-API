@@ -55,7 +55,7 @@ router.post('/playlists', (req, res, next) => {
 })
 
 // delete one
-router.delete('/playlists/:id', auth, (req, res, next) => {
+router.delete('/playlists/:id', (req, res, next) => {
   Playlist
     .findById(req.params.id)
     .then(playlist => {

@@ -13,6 +13,6 @@ const Artist = sequelize.define('artists', {
     tableName: 'artists'
   })
 
-//Artist.hasMany(Song,{foreignKey: 'artist_id'})
+Artist.hasMany(Song,{foreignKey: 'artist_id'})
 
 module.exports = Artist
