@@ -8,9 +8,10 @@ const Song = sequelize.define('songs', {
     field: 'title',
     allowNull: false
   },
-  artist_name: {
+  //foreign key ?
+  artist_id: {
     type: Sequelize.STRING,
-    field: 'artist_name',
+    field: 'artist_id',
     allowNull: false
   },
   album_title: {
@@ -18,6 +19,7 @@ const Song = sequelize.define('songs', {
     field: 'album_title',
     allowNull: false
   },
+  // foreign key ?
   playlistId: {
     type: Sequelize.INTEGER,
     field: 'playlist_id'
@@ -26,7 +28,5 @@ const Song = sequelize.define('songs', {
     timestamps: false,
     tableName: 'songs'
   })
-
-Song.belongsTo(Playlist)
 
 module.exports = Song

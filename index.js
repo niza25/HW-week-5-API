@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const usersRouter = require('./Users/routes')
 const playlistsRouter = require('./Playlists/routes')
 const songsRouter = require('./Songs/routes')
+const artistsRouter = require('./Artists/routes')
 const authRouter = require('./auth/routes')
 
 const app = express()
@@ -14,4 +15,5 @@ app
   .use(usersRouter)
   .use(playlistsRouter)
   .use(songsRouter)
+  .use(artistsRouter)
   .listen(port, () => console.log(`Listening on port ${port}`))
