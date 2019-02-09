@@ -22,6 +22,7 @@ router.post('/playlists/:id/songs', (req, res, next) => {
             return newArtist.id
           })
           .then(newId => {
+            
             Song
               .create(req.body, {
                 artist_id: newId
@@ -37,6 +38,7 @@ router.post('/playlists/:id/songs', (req, res, next) => {
           })
           .catch(error => next(error))
       } else {
+        
         Song
           .create(req.body,{
             artist_id: foundArtist.id
