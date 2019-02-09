@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const Artist = require('./model')
+const Song = require('../Songs/model')
 
 const router = new Router()
 
@@ -11,7 +12,9 @@ router.get('/artists', (req, res, next) => {
 
   Promise.all([
     Artist.count(),
-    Artist.findAll({ limit, offset }, {include: [Song]})
+    Artist.findAll({
+      include: [Song],
+      limit, offset})
   ])
   .then(([total, artists]) => {
     res.send({

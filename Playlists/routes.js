@@ -6,7 +6,7 @@ const Song = require('../Songs/model')
 const router = new Router()
 
 //retrieve all
-router.get('/playlists', auth, (req, res, next) => {
+router.get('/playlists', (req, res, next) => {
   
   const limit = req.query.limit || 25;
   const offset = req.query.offset || 0;
@@ -24,7 +24,7 @@ router.get('/playlists', auth, (req, res, next) => {
 })
 
 // get one
-router.get('/playlists/:id', auth, (req, res, next) => {
+router.get('/playlists/:id', (req, res, next) => {
   Playlist
   // include songs
     .findById(req.params.id, {include: [Song]})

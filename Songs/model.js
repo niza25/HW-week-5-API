@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
-const Playlist = require('../Playlists/model')
+const Artist = require('../Artists/model')
 
 const Song = sequelize.define('songs', {
   title: {
@@ -8,10 +8,10 @@ const Song = sequelize.define('songs', {
     field: 'title',
     allowNull: false
   },
-  //foreign key ?
-  artist_id: {
+  // shouldnt be there
+  artist_name: {
     type: Sequelize.STRING,
-    field: 'artist_id',
+    field: 'artist_name',
     allowNull: false
   },
   album_title: {
@@ -19,11 +19,15 @@ const Song = sequelize.define('songs', {
     field: 'album_title',
     allowNull: false
   },
-  // foreign key ?
   playlistId: {
     type: Sequelize.INTEGER,
     field: 'playlist_id'
-  }
+  },
+  // ??
+  /* artist_id: {
+    type: Sequelize.INTEGER,
+    field: 'artist_id'
+  } */
 }, {
     timestamps: false,
     tableName: 'songs'
