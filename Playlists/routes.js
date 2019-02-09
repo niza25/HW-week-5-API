@@ -6,7 +6,7 @@ const Song = require('../Songs/model')
 const router = new Router()
 
 router.get('/playlists', auth, (req, res, next) => {
-  
+
   const limit = req.query.limit || 25;
   const offset = req.query.offset || 0;
 
@@ -14,31 +14,28 @@ router.get('/playlists', auth, (req, res, next) => {
     Playlist.count(),
     Playlist.findAll({ limit, offset })
   ])
-  .then(([total, playlists]) => {
-    res.send({
-      playlists, total
+    .then(([total, playlists]) => {
+      res.status(200).send({
+        playlists, total
+      })
     })
-  })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
-// get one
 router.get('/playlists/:id', auth, (req, res, next) => {
   Playlist
-  // include songs
-    .findById(req.params.id, {include: [Song]})
+    .findById(req.params.id, { include: [Song] })
     .then(playlist => {
       if (!playlist) {
         return res.status(404).send({
           message: `Playlist does not exist`
         })
       }
-      return res.send(playlist)
+      return res.status(200).send(playlist)
     })
     .catch(error => next(error))
 })
 
-// create one
 router.post('/playlists', (req, res, next) => {
   Playlist
     .create(req.body)
@@ -53,7 +50,6 @@ router.post('/playlists', (req, res, next) => {
     .catch(error => next(error))
 })
 
-// delete one
 router.delete('/playlists/:id', auth, (req, res, next) => {
   Playlist
     .findById(req.params.id)

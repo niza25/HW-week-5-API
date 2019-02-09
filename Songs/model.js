@@ -24,7 +24,7 @@ const Song = sequelize.define('songs', {
   artist_id: {
     type: Sequelize.INTEGER,
     field: 'artist_id'
-  } 
+  }
 }, {
     timestamps: false,
     tableName: 'songs'

@@ -3,12 +3,11 @@ const router = new Router()
 const { toJWT } = require('./jwt')
 const bcrypt = require('bcrypt')
 const User = require('../Users/model')
-const auth = require('./middleware');
 
-router.post('/tokens', auth, (req, res) => {
+router.post('/tokens', (req, res) => {
   const email = req.body.email
   const psw = req.body.password
-  
+
   if (!email || !psw) {
     res.status(422).send({
       message: 'Please supply a valid email and password'
@@ -27,8 +26,7 @@ router.post('/tokens', auth, (req, res) => {
           })
         }
         if (bcrypt.compareSync(req.body.password, entity.password)) {
-          res.send({
-            //check that
+          res.status(200).send({
             token: toJWT({ userId: entity.id })
           })
         }
@@ -39,7 +37,7 @@ router.post('/tokens', auth, (req, res) => {
         }
       })
       .catch(err => {
-        console.error(err)
+        console.log(err)
         res.status(500).send({
           message: 'Something went wrong'
         })
