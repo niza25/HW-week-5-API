@@ -1,10 +1,11 @@
 const { Router } = require('express')
 const router = new Router()
 const { toJWT } = require('./jwt')
-const bcrypt = require('bcrypt');
-const User = require ('../Users/model')
+const bcrypt = require('bcrypt')
+const User = require('../Users/model')
+const auth = require('./middleware');
 
-router.post('/tokens', (req, res) => {
+router.post('/tokens', auth, (req, res) => {
   const email = req.body.email
   const psw = req.body.password
   
