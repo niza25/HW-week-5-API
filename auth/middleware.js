@@ -26,7 +26,7 @@ function auth(req, res, next) {
   }
   else {
     res.status(404).send({
-      message: 'Please supply some valid credentials'
+      message: 'Please supply valid credentials'
     })
   }
 }

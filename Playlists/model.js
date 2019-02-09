@@ -13,6 +13,6 @@ const Playlist = sequelize.define('playlists', {
   tableName: 'playlists'
 })
 
-Playlist.hasMany(Song)
+Playlist.hasMany(Song,{foreignKey: 'playlist_id'})
 
 module.exports = Playlist

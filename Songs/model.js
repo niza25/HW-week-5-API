@@ -8,7 +8,7 @@ const Song = sequelize.define('songs', {
     field: 'title',
     allowNull: false
   },
-  // shouldnt be there
+  // shouldnt be there?
   artist_name: {
     type: Sequelize.STRING,
     field: 'artist_name',
@@ -19,7 +19,7 @@ const Song = sequelize.define('songs', {
     field: 'album_title',
     allowNull: false
   },
-  playlistId: {
+  playlist_Id: {
     type: Sequelize.INTEGER,
     field: 'playlist_id'
   },
