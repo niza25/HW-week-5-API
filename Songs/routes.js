@@ -4,7 +4,7 @@ const Artist = require('../Artists/model')
 
 const router = new Router()
 
-// add song - check
+// artist id doesnt pass
 router.post('/playlists/:id/songs', (req, res, next) => {
 
   Artist
@@ -24,9 +24,7 @@ router.post('/playlists/:id/songs', (req, res, next) => {
           .then(newId => {
             Song
               .create(req.body, {
-                where: {
-                  artist_id: newId
-                }
+                artist_id: newId
               })
               .then(song => {
                 if (!song) {
@@ -40,10 +38,8 @@ router.post('/playlists/:id/songs', (req, res, next) => {
           .catch(error => next(error))
       } else {
         Song
-          .create(req.body, {
-            where: {
-              artist_id: foundArtist.id
-            }
+          .create(req.body,{
+            artist_id: foundArtist.id
           })
           .then(song => {
             if (!song) {
