@@ -24,9 +24,7 @@ router.post('/playlists/:id/songs', (req, res, next) => {
           .then(newId => {
             
             Song
-              .create(req.body, {
-                artist_id: newId
-              })
+              .create({...req.body, artist_id: newId})
               .then(song => {
                 if (!song) {
                   return res.status(404).send({
@@ -40,9 +38,7 @@ router.post('/playlists/:id/songs', (req, res, next) => {
       } else {
         
         Song
-          .create(req.body,{
-            artist_id: foundArtist.id
-          })
+          .create({...req.body, artist_id: foundArtist.id})
           .then(song => {
             if (!song) {
               return res.status(404).send({
