@@ -1,11 +1,12 @@
 const { Router } = require('express')
 const Playlist = require('./model')
 const auth = require('../auth/middleware')
+const Song = require('../Songs/model')
 
 const router = new Router()
 
 //retrieve all
-router.get('/playlists', auth, (req, res, next) => {
+router.get('/playlists', (req, res, next) => {
   
   const limit = req.query.limit || 25;
   const offset = req.query.offset || 0;
@@ -23,10 +24,10 @@ router.get('/playlists', auth, (req, res, next) => {
 })
 
 // get one
-router.get('/playlists/:id', auth, (req, res, next) => {
+router.get('/playlists/:id', (req, res, next) => {
   Playlist
   // include songs
-    .findById(req.params.id)
+    .findById(req.params.id, {include: [Song]})
     .then(playlist => {
       if (!playlist) {
         return res.status(404).send({
@@ -54,7 +55,7 @@ router.post('/playlists', (req, res, next) => {
 })
 
 // delete one
-router.delete('/playlists/:id', auth, (req, res, next) => {
+router.delete('/playlists/:id', (req, res, next) => {
   Playlist
     .findById(req.params.id)
     .then(playlist => {
